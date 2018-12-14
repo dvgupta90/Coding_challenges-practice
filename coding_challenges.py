@@ -66,7 +66,50 @@ def conv_binary(decimal_num):
     while not new_stack.is_empty():
         binary_num = binary_num + str(new_stack.pop())
 
-    return binary_num       
+    return binary_num
+    
+
+#4. Convert INFIX expression to POSTFIX expression
+def infix_to_postfix(exp):
+    from pythonds.basic.stack import Stack
+    #create dic to store precedence of operators 
+    precedence = {}         
+    precedence[')'] = 1
+    precedence['+'] = 2
+    precedence['-'] = 2
+    precedence['/'] = 3
+    precedence['*'] = 3
+
+    postfix = []
+    operator_stack = Stack()
+    exp_tokens = exp.split()
+
+    for token in exp_tokens:
+        if token == "(":
+            operator_stack.push(token)
+
+        elif token in A-Z or token in 0-9:
+            postfix.append(token)
+
+        elif token == ")":
+            top_token = operator_stack.pop()
+            while top_token != "(":
+                postfix.append(top_token)
+                top_token = operator_stack.pop()
+
+        else:
+            while not operator_stack.is_empty() and 
+            (precedence[operator_stack.peek()] >= precedence[token]):
+                postfix.append(operator_stack.pop())
+                operator_stack.push(token)
+
+    while not operator_stack.is_empty():
+        postfix.append(operator_stack.pop())
+
+    return "".join(postfix)    
+
+                            
+
 
 
 
