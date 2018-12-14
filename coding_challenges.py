@@ -23,7 +23,7 @@ class Solution:
     
 
     def twoSum(self, nums, target):
-        
+
         complement_num_dict = {}
             
         for i in range(len(nums)):
@@ -31,6 +31,42 @@ class Solution:
                 return [complement_num_dict[nums[i]],i]
             else:
                 complement_num_dict[target - nums[i]] = i
+
+
+
+#2. Reverse a string using STACK
+
+def revstring(string):
+
+    from pythonds.basic.stack import Stack
+    new_stack = Stack()
+    rev_string = ""
+
+    for char in string:
+        new_stack.push(char)
+
+    while not new_stack.is_empty():
+        rev_string = rev_string + new_stack.pop()
+
+    return rev_string
+    
+
+
+#3. Convert Decimal to Binary using Stack
+def conv_binary(decimal_num):
+    from pythonds.basic.stack import Stack
+    new_stack = Stack()
+    binary_num = ""
+
+    while decimal_num is > 0:
+        remainder = decimal_num%2
+        new_stack.push(remainder)
+        decimal_num = decimal_num//2
+
+    while not new_stack.is_empty():
+        binary_num = binary_num + str(new_stack.pop())
+
+    return binary_num       
 
 
 
